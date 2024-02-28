@@ -12,8 +12,8 @@ from string import ascii_uppercase
 import tkinter as tk
 from PIL import Image, ImageTk
 
-from hunspell import Hunspell
-import enchant
+#from hunspell import Hunspell
+#import enchant
 
 from keras.models import model_from_json
 
@@ -25,7 +25,7 @@ class Application:
 
     def __init__(self):
 
-        self.hs = Hunspell('en_US')
+        #self.hs = Hunspell('en_US')
         self.vs = cv2.VideoCapture(0)
         self.current_image = None
         self.current_image2 = None
@@ -165,33 +165,10 @@ class Application:
             self.panel4.config(text = self.word, font = ("Courier", 30))
 
             self.panel5.config(text = self.str,font = ("Courier", 30))
-
-            predicts = self.hs.suggest(self.word)
             
-            if(len(predicts) > 1):
-
-                self.bt1.config(text = predicts[0], font = ("Courier", 20))
-
-            else:
-
-                self.bt1.config(text = "")
-
-            if(len(predicts) > 2):
-
-                self.bt2.config(text = predicts[1], font = ("Courier", 20))
-
-            else:
-
-                self.bt2.config(text = "")
-
-            if(len(predicts) > 3):
-
-                self.bt3.config(text = predicts[2], font = ("Courier", 20))
-
-            else:
-
-                self.bt3.config(text = "")
-
+            if self.word:
+                self.str += " " + self.word
+                self.word = ""
 
         self.root.after(5, self.video_loop)
 
@@ -324,50 +301,30 @@ class Application:
                 self.word += self.current_symbol
 
     def action1(self):
-
-        predicts = self.hs.suggest(self.word)
-
-        if(len(predicts) > 0):
+        if self.word:
+            self.str += " " + self.word
             self.word = ""
-            self.str += " "
-            self.str += predicts[0]
 
     def action2(self):
-
-        predicts = self.hs.suggest(self.word)
-
-        if(len(predicts) > 1):
+        if self.word:
+            self.str += " " + self.word
             self.word = ""
-            self.str += " "
-            self.str += predicts[1]
 
     def action3(self):
-
-        predicts = self.hs.suggest(self.word)
-
-        if(len(predicts) > 2):
+        if self.word:
+            self.str += " " + self.word
             self.word = ""
-            self.str += " "
-            self.str += predicts[2]
 
     def action4(self):
-
-        predicts = self.hs.suggest(self.word)
-
-        if(len(predicts) > 3):
+        if self.word:
+            self.str += " " + self.word
             self.word = ""
-            self.str += " "
-            self.str += predicts[3]
 
     def action5(self):
-
-        predicts = self.hs.suggest(self.word)
-
-        if(len(predicts) > 4):
+        if self.word:
+            self.str += " " + self.word
             self.word = ""
-            self.str += " "
-            self.str += predicts[4]
-            
+        
     def destructor(self):
 
         print("Closing Application...")
