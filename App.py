@@ -314,7 +314,11 @@ class Application:
                         self.str += " "
 
                     self.str += self.word
-
+                    
+                    # Speak the word out loud
+                    engine.say(self.word)
+                    engine.runAndWait()
+            
                     self.word = ""
 
             else:
@@ -333,7 +337,11 @@ class Application:
         if(len(predicts) > 0):
             self.word = ""
             self.str += " "
-            self.str += predicts[0]
+            self.str += predicts[0]    
+            # Queue the word for speech synthesis
+            engine.say(predicts[0])
+            # Play the speech immediately
+            engine.runAndWait()
 
     def action2(self):
 
@@ -343,6 +351,11 @@ class Application:
             self.word = ""
             self.str += " "
             self.str += predicts[1]
+            # Queue the word for speech synthesis
+            engine.say(predicts[1])
+            # Play the speech immediately
+            engine.runAndWait()
+
 
     def action3(self):
 
@@ -352,6 +365,11 @@ class Application:
             self.word = ""
             self.str += " "
             self.str += predicts[2]
+            # Queue the word for speech synthesis
+            engine.say(predicts[2])
+            # Play the speech immediately
+            engine.runAndWait()
+
 
     def action4(self):
 
@@ -361,6 +379,11 @@ class Application:
             self.word = ""
             self.str += " "
             self.str += predicts[3]
+            # Queue the word for speech synthesis
+            engine.say(predicts[3])
+            # Play the speech immediately
+            engine.runAndWait()
+
 
     def action5(self):
 
@@ -370,6 +393,11 @@ class Application:
             self.word = ""
             self.str += " "
             self.str += predicts[4]
+            # Queue the word for speech synthesis
+            engine.say(predicts[4])
+            # Play the speech immediately
+            engine.runAndWait()
+
             
     def destructor(self):
 
