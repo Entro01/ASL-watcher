@@ -324,7 +324,7 @@ class Application:
                     engine.runAndWait()
 
                     # Translate the updated sentence and update the translation panel
-                    translated = translator.translate(self.str, dest='fr') # Example: translating to French
+                    translated = translator.translate(self.str, dest='pa')
                     self.translation_label.config(text=translated.text)
 
             
@@ -352,7 +352,7 @@ class Application:
             # Play the speech immediately
             engine.runAndWait()
             # Translate the updated sentence and update the translation panel
-            translated = translator.translate(self.str, dest='fr') # Example: translating to French
+            translated = translator.translate(self.str, dest='pa')
             self.translation_label.config(text=translated.text)
 
     def action2(self):
@@ -368,7 +368,7 @@ class Application:
             # Play the speech immediately
             engine.runAndWait()
             # Translate the updated sentence and update the translation panel
-            translated = translator.translate(self.str, dest='fr') # Example: translating to French
+            translated = translator.translate(self.str, dest='pa')
             self.translation_label.config(text=translated.text)
 
 
@@ -385,7 +385,7 @@ class Application:
             # Play the speech immediately
             engine.runAndWait()
             # Translate the updated sentence and update the translation panel
-            translated = translator.translate(self.str, dest='fr') # Example: translating to French
+            translated = translator.translate(self.str, dest='pa')
             self.translation_label.config(text=translated.text)
 
 
@@ -402,7 +402,7 @@ class Application:
             # Play the speech immediately
             engine.runAndWait()
             # Translate the updated sentence and update the translation panel
-            translated = translator.translate(self.str, dest='fr') # Example: translating to French
+            translated = translator.translate(self.str, dest='pa')
             self.translation_label.config(text=translated.text)
 
 
@@ -419,7 +419,7 @@ class Application:
             # Play the speech immediately
             engine.runAndWait()
             # Translate the updated sentence and update the translation panel
-            translated = translator.translate(self.str, dest='fr') # Example: translating to French
+            translated = translator.translate(self.str, dest='pa')    
             self.translation_label.config(text=translated.text)
 
             
