@@ -7,7 +7,7 @@ import os, sys
 import time
 import operator
 import pyttsx3
-
+from googletrans import Translator
 
 from string import ascii_uppercase
 
@@ -21,6 +21,7 @@ from keras.models import model_from_json
 
 os.environ["THEANO_FLAGS"] = "device=cuda, assert_no_cpu_op=True"
 engine = pyttsx3.init()
+translator = Translator()
 
 #Application :
 
@@ -87,25 +88,28 @@ class Application:
 
         self.T1 = tk.Label(self.root)
         self.T1.place(x = 10, y = 540)
-        self.T1.config(text = "Character :", font = ("Courier", 30, "bold"))
+        self.T1.config(text = "Character :", font = ("Courier", 15, "bold"))
 
         self.panel4 = tk.Label(self.root) # Word
         self.panel4.place(x = 220, y = 595)
 
         self.T2 = tk.Label(self.root)
         self.T2.place(x = 10,y = 595)
-        self.T2.config(text = "Word :", font = ("Courier", 30, "bold"))
+        self.T2.config(text = "Word :", font = ("Courier", 15, "bold"))
 
         self.panel5 = tk.Label(self.root) # Sentence
         self.panel5.place(x = 350, y = 645)
 
         self.T3 = tk.Label(self.root)
         self.T3.place(x = 10, y = 645)
-        self.T3.config(text = "Sentence :",font = ("Courier", 30, "bold"))
+        self.T3.config(text = "Sentence :",font = ("Courier", 15, "bold"))
+        
+        self.translation_label = tk.Label(self.root, text="Translation:", font=("Courier", 15))
+        self.translation_label.place(x=10, y=670) 
 
         self.T4 = tk.Label(self.root)
-        self.T4.place(x = 250, y = 690)
-        self.T4.config(text = "Suggestions :", fg = "red", font = ("Courier", 30, "bold"))
+        self.T4.place(x = 250, y = 720)
+        self.T4.config(text = "Suggestions :", fg = "red", font = ("Courier", 15, "bold"))
 
         self.bt1 = tk.Button(self.root, command = self.action1, height = 0, width = 0)
         self.bt1.place(x = 26, y = 745)
@@ -163,17 +167,17 @@ class Application:
             self.panel2.imgtk = imgtk
             self.panel2.config(image = imgtk)
 
-            self.panel3.config(text = self.current_symbol, font = ("Courier", 30))
+            self.panel3.config(text = self.current_symbol, font = ("Courier", 15))
 
-            self.panel4.config(text = self.word, font = ("Courier", 30))
+            self.panel4.config(text = self.word, font = ("Courier", 15))
 
-            self.panel5.config(text = self.str,font = ("Courier", 30))
+            self.panel5.config(text = self.str,font = ("Courier", 15))
 
             predicts = self.hs.suggest(self.word)
             
             if(len(predicts) > 1):
 
-                self.bt1.config(text = predicts[0], font = ("Courier", 20))
+                self.bt1.config(text = predicts[0], font = ("Courier", 15))
 
             else:
 
@@ -181,7 +185,7 @@ class Application:
 
             if(len(predicts) > 2):
 
-                self.bt2.config(text = predicts[1], font = ("Courier", 20))
+                self.bt2.config(text = predicts[1], font = ("Courier", 15))
 
             else:
 
@@ -189,7 +193,7 @@ class Application:
 
             if(len(predicts) > 3):
 
-                self.bt3.config(text = predicts[2], font = ("Courier", 20))
+                self.bt3.config(text = predicts[2], font = ("Courier", 15))
 
             else:
 
@@ -318,6 +322,11 @@ class Application:
                     # Speak the word out loud
                     engine.say(self.word)
                     engine.runAndWait()
+
+                    # Translate the updated sentence and update the translation panel
+                    translated = translator.translate(self.str, dest='fr') # Example: translating to French
+                    self.translation_label.config(text=translated.text)
+
             
                     self.word = ""
 
@@ -342,6 +351,9 @@ class Application:
             engine.say(predicts[0])
             # Play the speech immediately
             engine.runAndWait()
+            # Translate the updated sentence and update the translation panel
+            translated = translator.translate(self.str, dest='fr') # Example: translating to French
+            self.translation_label.config(text=translated.text)
 
     def action2(self):
 
@@ -355,6 +367,9 @@ class Application:
             engine.say(predicts[1])
             # Play the speech immediately
             engine.runAndWait()
+            # Translate the updated sentence and update the translation panel
+            translated = translator.translate(self.str, dest='fr') # Example: translating to French
+            self.translation_label.config(text=translated.text)
 
 
     def action3(self):
@@ -369,6 +384,9 @@ class Application:
             engine.say(predicts[2])
             # Play the speech immediately
             engine.runAndWait()
+            # Translate the updated sentence and update the translation panel
+            translated = translator.translate(self.str, dest='fr') # Example: translating to French
+            self.translation_label.config(text=translated.text)
 
 
     def action4(self):
@@ -383,6 +401,9 @@ class Application:
             engine.say(predicts[3])
             # Play the speech immediately
             engine.runAndWait()
+            # Translate the updated sentence and update the translation panel
+            translated = translator.translate(self.str, dest='fr') # Example: translating to French
+            self.translation_label.config(text=translated.text)
 
 
     def action5(self):
@@ -397,6 +418,9 @@ class Application:
             engine.say(predicts[4])
             # Play the speech immediately
             engine.runAndWait()
+            # Translate the updated sentence and update the translation panel
+            translated = translator.translate(self.str, dest='fr') # Example: translating to French
+            self.translation_label.config(text=translated.text)
 
             
     def destructor(self):
